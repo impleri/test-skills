@@ -1,19 +1,28 @@
-// Log all check spawn events (default KubeJS handling)
-// EntityEvents.checkSpawn(event => {
-//   console.info(`Maybe spawning ${event.entity.name}`);
-// });
+MobSkillEvents.register((event) => {
+  console.info("Registering mob restrictions");
 
-// Always prevent blazes from spawning (default KubeJS handling)
-EntityEvents.checkSpawn('minecraft:blaze', event => event.cancel());
+  // Always prevent spiders from spawning
+  event.restrict(MOBS.SPIDER, (is) => is.unspawnable().always());
 
-// Block creepers from spawning if a player in spawn range has started the quest
-EntityEvents.checkSpawn('minecraft:creeper', event => {
-  console.info(`Entity ${event.entity.name} trying to spawn in ${event.block.dimension} at ${event.block.pos.toShortString()}`);
-  MobSkills.allowUnlessAny(event, playerCondition => playerCondition.can('skills:started_quest'));
-});
+  event.restrict('#skeletons', is => is.unspawnable().always());
 
-// Block zombies from spawning unless all players in spawn range have started the quest
-EntityEvents.checkSpawn('minecraft:zombie', event => {
-  console.info(`Entity ${event.entity.name} trying to spawn in ${event.block.dimension} at ${event.block.pos.toShortString()}`);
-  MobSkills.denyUnlessAll(event, playerCondition => playerCondition.can('skills:started_quest'));
+  // ALLOW creepers to spawn IF ALL players in range
+  event.restrict(MOBS.CREEPER, (is) => is.spawnable(true).if(hasKillCount(6)));
+
+  // ALLOW cows to spawn UNLESS ANY players in range
+  event.restrict(MOBS.COW, (is) => is.spawnable().unless(hasntKillCount(6)));
+
+  // DENY zombies from spawning UNLESS ALL players in range
+  event.restrict(MOBS.ZOMBIE, (is) =>
+    is.unspawnable(true).unless(hasKillCount(4))
+  );
+
+  // DENY zombies from spawning IF ANY player in range
+  event.restrict(MOBS.SHEEP, (is) => is.unspawnable().if(hasntKillCount(4)));
+
+  // Players cannot interact with villagers
+  event.restrict(MOBS.VILLAGER, (is) => is.usable().if(hasKillCount(9)));
+
+  // Players cannot shear sheep (even if tools aren't blocked)
+  event.restrict(MOBS.SHEEP, (is) => is.unusable().if(hasntKillCount(10)));
 });
