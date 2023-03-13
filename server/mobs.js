@@ -4,7 +4,7 @@ MobSkillEvents.register((event) => {
   // Always prevent spiders from spawning
   event.restrict(MOBS.SPIDER, (is) => is.unspawnable().always());
 
-  event.restrict('#skeletons', is => is.unspawnable().always());
+  event.restrict("#skeletons", (is) => is.unspawnable().always());
 
   // ALLOW creepers to spawn IF ALL players in range
   event.restrict(MOBS.CREEPER, (is) => is.spawnable(true).if(hasKillCount(6)));

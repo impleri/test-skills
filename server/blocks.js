@@ -4,10 +4,12 @@ BlockSkillEvents.register((event) => {
     is.replaceWithBlock(BLOCKS.BIRCH_LEAVES).unless(hasKillCount(9));
   });
 
+  // Test targeting mod id
   event.restrict("@rechiseled", (is) => {
     is.unbreakable();
   });
 
+  // Test targeting tags
   event.restrict("#logs", (is) => {
     is.unbreakable();
   });
@@ -27,7 +29,7 @@ BlockSkillEvents.register((event) => {
     is.unbreakable().unless(hasKillCount(6));
   });
 
-  // Tests harvestable restrictions (breaking grass even with a shovel should drop nothing) - SURVIVAL ONLY -- FAIL
+  // Tests harvestable restrictions (breaking grass even with a shovel should drop nothing)
   event.restrict(BLOCKS.GRASS, (is) => {
     is.unharvestable().unless(hasKillCount(6));
   });

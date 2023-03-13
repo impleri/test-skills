@@ -11,7 +11,7 @@ ItemSkillEvents.register((event) => {
     restrict.unusable().if(hasntKillCount(10));
   });
 
-  event.restrict("rechiseled:*", (restrict) => {
+  event.restrict("chipped:*", (restrict) => {
     restrict.unproducible().if(hasntKillCount(4));
   });
 
