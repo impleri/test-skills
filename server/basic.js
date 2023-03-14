@@ -1,4 +1,4 @@
-SkillEvents.modification((event) => {
+onEvent("skills.modification", (event) => {
   // Test modifying basic skill
   event.modify(SKILLS.TEST, (skill) => {
     skill.initialValue(true).description("Less of a test value");

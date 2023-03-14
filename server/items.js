@@ -1,4 +1,4 @@
-ItemSkillEvents.register((event) => {
+onEvent("itemSkills.register", (event) => {
   console.info("Registering item restrictions");
 
   // Test holdable restriction (should not be able to keep item in any inventory slot [main inventory, armor, offhand])

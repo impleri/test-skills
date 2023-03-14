@@ -1,4 +1,4 @@
-BlockSkillEvents.register((event) => {
+onEvent("blockSkills.register", (event) => {
   // Tests block replacements (all oak leaves should be birch leaves)
   event.restrict(BLOCKS.LEAVES, (is) => {
     is.replaceWithBlock(BLOCKS.BIRCH_LEAVES).unless(hasKillCount(9));

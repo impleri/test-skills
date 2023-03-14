@@ -29,7 +29,7 @@ const wrapSkillsHandler = (handler) => (event) => {
   if (event.hand !== "main_hand") {
     return;
   }
-
+  
   logSkills(skillsFor(event.entity).all, "[BEFORE]");
 
   handler(skillsFor(event.entity));
@@ -38,10 +38,18 @@ const wrapSkillsHandler = (handler) => (event) => {
 };
 
 const onLeftClick = (block, handler) =>
-  BlockEvents.broken(block, wrapSkillsHandler(handler));
+  onEvent("block.left_click", (event) => {
+    if (event.block.id === block) {
+      wrapSkillsHandler(handler)(event);
+    }
+  });
 
 const onRightClick = (block, handler) =>
-  BlockEvents.rightClicked(block, wrapSkillsHandler(handler));
+  onEvent("block.right_click", (event) => {
+    if (event.block.id === block) {
+      wrapSkillsHandler(handler)(event);
+    }
+  });
 
 const hasKillCount = (count) => (player) =>
   player.can(SKILLS.KILL_COUNT, count);

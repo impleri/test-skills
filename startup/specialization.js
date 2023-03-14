@@ -1,6 +1,6 @@
 // priority: 0
 
-global['MAGIC_TYPES'] = {
+global["MAGIC_TYPES"] = {
   green: "green",
   blue: "blue",
   white: "white",
@@ -8,13 +8,14 @@ global['MAGIC_TYPES'] = {
   red: "red",
 };
 
-const MAGIC_SPECIALIZATIONS = Object.values(global['MAGIC_TYPES']);
+const MAGIC_SPECIALIZATIONS = Object.values(global["MAGIC_TYPES"]);
 
-SkillEvents.registration(event => {
+onEvent("skills.registration", (event) => {
   // Test adding specialized skill, change limits
-  event.add(SKILLS.MAGIC_SPECIAL, 'specialized', skill => {
-    skill.options(MAGIC_SPECIALIZATIONS)
-        .description('Magic Specialization')
-        .limitChanges(3);
-   });
- });
+  event.add(SKILLS.MAGIC_SPECIAL, "specialized", (skill) => {
+    skill
+      .options(MAGIC_SPECIALIZATIONS)
+      .description("Magic Specialization")
+      .limitChanges(3);
+  });
+});

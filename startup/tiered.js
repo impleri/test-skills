@@ -1,6 +1,6 @@
 // priority: 0
 
-global['MINE_LEVELS'] = {
+global["MINE_LEVELS"] = {
   stone: "stone",
   iron: "iron",
   gold: "gold",
@@ -8,13 +8,14 @@ global['MINE_LEVELS'] = {
   netherite: "netherite",
 };
 
-const MINE_TIERS = Object.values(global['MINE_LEVELS']);
+const MINE_TIERS = Object.values(global["MINE_LEVELS"]);
 
-SkillEvents.registration(event => {
+onEvent("skills.registration", (event) => {
   // Test adding numeric skill
-  event.add(SKILLS.MINING_LEVEL, 'tiered', skill => {
-    skill.initialValue(global['MINE_LEVELS'].iron)
-        .options(MINE_TIERS)
-        .description('Mining level of bare fists');
-   });
- });
+  event.add(SKILLS.MINING_LEVEL, "tiered", (skill) => {
+    skill
+      .initialValue(global["MINE_LEVELS"].iron)
+      .options(MINE_TIERS)
+      .description("Mining level of bare fists");
+  });
+});

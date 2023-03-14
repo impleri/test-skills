@@ -1,4 +1,4 @@
-SkillEvents.registration((event) => {
+onEvent("skills.registration", (event) => {
   // Test most basic add
   event.add(SKILLS.TEST, "skills:basic");
 
