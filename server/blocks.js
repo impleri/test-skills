@@ -39,3 +39,7 @@ BlockSkillEvents.register((event) => {
     is.unusable().if(hasntKillCount(6));
   });
 });
+
+// Triggering a block update on a replaced block unhides it
+// Travelling through dimension unhides replaced blocks
+// Changing skills is not triggering block updates

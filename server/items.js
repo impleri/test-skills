@@ -17,7 +17,7 @@ ItemSkillEvents.register((event) => {
 
   // Test restrict by tag
   event.restrict("#wool", (restrict) => {
-    restrict.unconsumable().if(hasntKillCount(10)); // FAIL?
+    restrict.unconsumable().if(hasntKillCount(10));
   });
 
   // Test producible restriction (should not be able to craft paper)

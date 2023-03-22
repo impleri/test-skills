@@ -1,17 +1,16 @@
-// Test catching all teleport events, plus event.entity
-DimensionEvents.onTeleport((event) => {
-  console.info(
-    `Player ${event.entity.name} trying to teleport to ${event.destination}`
+DimensionSkillEvents.register((event) => {
+  // Test simple teleport restriction
+  event.restrict("minecraft:the_nether", (restrict) =>
+    restrict.inaccessible().if(hasntKillCount(8))
   );
-  logSkills(skillsFor(event.entity).all, "[DIMENSION]");
-});
 
-// Test general blocking (should not be able to teleport at all)
-DimensionEvents.onTeleport("minecraft:the_nether", (event) => event.cancel());
+  // Test replacement dimension
+  event.restrict("the_nether", (restrict) =>
+    restrict.replaceWith("the_end").if(hasntKillCount(5))
+  );
 
-// Test skills-based blocking plus event.player and event.deny (should not be able to teleport)
-DimensionEvents.onTeleport("minecraft:the_end", (event) => {
-  if (skillsFor(event.player).cannot(STARTED_QUEST)) {
-    event.deny();
-  }
+  // Test one-way teleport restriction
+  event.restrict("minecraft:overworld", (restrict) =>
+    restrict.inaccessible().inDimension("the_nether").unless(hasKillCount(10))
+  );
 });
