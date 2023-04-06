@@ -2,6 +2,7 @@
 
 const SKILLS = global["SKILLS"];
 const MOBS = global["MOBS"];
+const FLUIDS = global["FLUIDS"];
 const BLOCKS = global["BLOCKS"];
 const ITEMS = global["ITEMS"];
 

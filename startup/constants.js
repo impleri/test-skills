@@ -32,6 +32,11 @@ global["BLOCKS"] = {
   FURNACE: "minecraft:furnace",
 };
 
+global["FLUIDS"] = {
+  WATER: "minecraft:water",
+  LAVA: "minecraft:lava",
+};
+
 global["ITEMS"] = {
   BED: "minecraft:white_bed",
   PAPER: "minecraft:paper",
@@ -47,4 +52,5 @@ global["ITEMS"] = {
 const SKILLS = global["SKILLS"];
 const MOBS = global["MOBS"];
 const BLOCKS = global["BLOCKS"];
+const FLUIDS = global["FLUIDS"];
 const ITEMS = global["ITEMS"];

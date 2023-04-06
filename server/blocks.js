@@ -13,7 +13,7 @@ BlockSkillEvents.register((event) => {
   event.restrict("#logs", (is) => {
     is.unbreakable();
   });
-
+  
   // Test chained block replacements (all birch AND oak leaves should be stone)
   event.restrict(BLOCKS.BIRCH_LEAVES, (is) => {
     is.replaceWithBlock(BLOCKS.STONE).unless(hasKillCount(6));
