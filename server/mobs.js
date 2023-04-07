@@ -4,7 +4,10 @@ MobSkillEvents.register((event) => {
   // Always prevent spiders from spawning
   event.restrict(MOBS.SPIDER, (is) => is.unspawnable().always());
 
-  event.restrict("#skeletons", (is) => is.unspawnable().always());
+  // Prevent skeletons from spawning naturally (but not from mob spawner blocks)
+  event.restrict("#skeletons", (is) =>
+    is.unspawnable().fromSpawner("natural").notFromSpawner("spawner").always()
+  );
 
   // ALLOW creepers to spawn IF ALL players in range
   event.restrict(MOBS.CREEPER, (is) => is.spawnable(true).if(hasKillCount(6)));
@@ -14,7 +17,7 @@ MobSkillEvents.register((event) => {
 
   // DENY zombies from spawning UNLESS ALL players in range
   event.restrict(MOBS.ZOMBIE, (is) =>
-    is.unspawnable(true).unless(hasKillCount(4))
+    is.unspawnable(true).fromSpawner("spawner").unless(hasKillCount(4))
   );
 
   // DENY zombies from spawning IF ANY player in range
