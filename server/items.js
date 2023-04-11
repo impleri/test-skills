@@ -1,6 +1,4 @@
 onEvent("itemSkills.register", (event) => {
-  console.info("Registering item restrictions");
-
   // Test holdable restriction (should not be able to keep item in any inventory slot [main inventory, armor, offhand])
   event.restrict(ITEMS.BED, (restrict) => {
     restrict.everything().if(hasntKillCount(10));
@@ -11,7 +9,7 @@ onEvent("itemSkills.register", (event) => {
     restrict.unusable().if(hasntKillCount(10));
   });
 
-  event.restrict("chipped:*", (restrict) => {
+  event.restrict("create:*", (restrict) => {
     restrict.unproducible().if(hasntKillCount(4));
   });
 

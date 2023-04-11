@@ -2,6 +2,7 @@
 
 const SKILLS = global["SKILLS"];
 const MOBS = global["MOBS"];
+const FLUIDS = global["FLUIDS"];
 const BLOCKS = global["BLOCKS"];
 const ITEMS = global["ITEMS"];
 
@@ -29,7 +30,7 @@ const wrapSkillsHandler = (handler) => (event) => {
   if (event.hand !== "main_hand") {
     return;
   }
-  
+
   logSkills(skillsFor(event.entity).all, "[BEFORE]");
 
   handler(skillsFor(event.entity));

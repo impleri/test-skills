@@ -1,6 +1,4 @@
 onEvent("mobSkills.register", (event) => {
-  console.info("Registering mob restrictions");
-
   // Always prevent spiders from spawning
   event.restrict(MOBS.SPIDER, (is) => is.unspawnable().always());
 
