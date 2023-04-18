@@ -4,7 +4,9 @@ SkillEvents.registration((event) => {
 
   // Test adding basic skill, description, ResourceLocation parsing
   event.add(SKILLS.STARTED_QUEST, "basic", (skill) => {
-    skill.description("Indicates a Player has joined the Great Quest");
+    skill
+      .description("Indicates a Player has joined the Great Quest")
+      .sharedWithTeam();
   });
 
   // Test adding basic skill, initial value

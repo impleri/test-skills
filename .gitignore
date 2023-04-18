@@ -1,2 +1,6 @@
 *.iml
-
+/README.txt
+/assets
+/config
+/data
+/exported
