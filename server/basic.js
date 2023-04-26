@@ -18,7 +18,7 @@ onRightClick(BLOCKS.DIRT, (event) => event.degrade(SKILLS.STARTED_QUEST));
 // Test improve, unless, and can
 onRightClick(BLOCKS.LEAVES, (event) =>
   event.improve(SKILLS.DENIED_QUEST, (conditions) =>
-    conditions.unless(event.can(SKILLS.DENIED_QUEST))
+    conditions.unless(event.can(SKILLS.DENIED_QUEST)).chance(50)
   )
 );
 
